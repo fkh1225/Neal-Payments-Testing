@@ -1,0 +1,498 @@
+/* Normalize */
+button,
+hr,
+input {
+  overflow: visible;
+}
+progress,
+sub,
+sup {
+  vertical-align: baseline;
+}
+[type="checkbox"],
+[type="radio"],
+legend {
+  box-sizing: border-box;
+  padding: 0;
+}
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+details,
+main {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+a {
+  background-color: transparent;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+img {
+  border-style: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+select {
+  text-transform: none;
+}
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  -webkit-appearance: button;
+}
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner,
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring,
+button:-moz-focusring {
+  outline: ButtonText dotted 1px;
+}
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+legend {
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  white-space: normal;
+}
+textarea {
+  overflow: auto;
+}
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+summary {
+  display: list-item;
+}
+[hidden],
+template {
+  display: none;
+}
+
+/* Styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  padding: 1rem;
+  background-color: #fff;
+  font-family: "Inter", sans-serif;
+}
+
+form {
+  max-width: 31.5rem;
+  margin: 0 auto;
+}
+
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 0;
+  font-family: monospace;
+  display: inline-flex;
+  line-height: 12px;
+  opacity: 0;
+}
+
+.toast.success {
+  background-color: mediumseagreen;
+}
+
+.toast.failed {
+  background-color: indianred;
+}
+
+.toast span {
+  margin-left: 12px;
+  margin-top: 2px;
+}
+
+.toast.show {
+  visibility: visible;
+  -webkit-animation: fadein 5s;
+  animation: fadein 5s;
+}
+
+@keyframes fadein {
+  0% {
+    bottom: 0;
+    opacity: 0;
+  }
+  16.667% {
+    bottom: 30px;
+    opacity: 1;
+  }
+  83.333% {
+    bottom: 30px;
+    opacity: 1;
+  }
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+.address {
+  color: #323416;
+}
+
+/* --- Base Styles & Variables --- */
+:root {
+  --primary-color: #3b82f6;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --light-gray: #f9fafb;
+  --text-color: #333;
+  --border-color: #e5e7eb;
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --border-radius: 12px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--light-gray);
+  color: var(--text-color);
+  margin: 0;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding: 3rem;
+  }
+}
+
+/* --- Main Layout --- */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1024px;
+}
+
+/* Responsive layout for wider screens */
+@media (min-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- Card Styling --- */
+.card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- Product Card Specifics --- */
+.product-card {
+  align-items: center;
+  text-align: center;
+}
+
+.product-card h2 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.product-card .price {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.product-card .product-image {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Quantity Selector --- */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.quantity-selector button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  color: var(--primary-color);
+  transition: background-color 0.2s;
+}
+
+.quantity-selector button:hover {
+  background-color: #f0f0f0;
+}
+
+.quantity-selector button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.quantity-selector input {
+  border: none;
+  text-align: center;
+  width: 3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  -moz-appearance: textfield;
+}
+
+.quantity-selector input::-webkit-outer-spin-button,
+.quantity-selector input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* --- Payment Form Styling --- */
+.payment-form-card h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+/* --- Pay Button (used for refund button) --- */
+.pay-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.pay-button:hover {
+  background-color: #2563eb;
+}
+
+.pay-button:active {
+  transform: scale(0.98);
+}
+
+.pay-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* --- Refund Card Specifics --- */
+.refund-card {
+  grid-column: 1 / -1; /* Make refund card span full width on desktop */
+}
+
+.refund-card h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.refund-card p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.payment-id-display {
+  background-color: var(--light-gray);
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-family: monospace;
+  word-break: break-all;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.form-field label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-field input {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* --- Loading Spinner & States --- */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.loading-spinner {
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+/* --- General Message Styling --- */
+.error-message {
+  color: var(--error-color);
+  text-align: center;
+  padding: 1rem 0 0 0; /* Adjusted padding for better spacing */
+  min-height: 1.2em; /* Prevents layout shift when text appears */
+  font-weight: 500;
+}
+
+.success-message {
+  color: var(--success-color);
+  text-align: center;
+  padding: 1rem 0 0 0;
+  min-height: 1.2em;
+  font-weight: 500;
+  word-break: break-all; /* Ensures long IDs don't overflow */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+details {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+summary {
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none; /* Remove default marker */
+  position: relative;
+  padding-right: 20px;
+}
+
+summary::after {
+  content: "▼";
+  position: absolute;
+  right: 0;
+  transition: transform 0.2s;
+}
+
+details[open] summary::after {
+  transform: rotate(-180deg);
+}

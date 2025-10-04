@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-site-verification"
+      content="Y6_6BbF6yBJyN4p-cgjoURGIyyn2xud5EdKOAUZqjpQ"
+    />
+    <title>CKO DEMO</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="png" href="logo.png" />
+  </head>
+
+  <body>
+    <!-- 
+      Using a main container to create a responsive, centered layout.
+      It will stack on mobile and sit side-by-side on desktop.
+    -->
+    <div class="main-container">
+      <!-- Card for Product Details -->
+      <div class="card product-card">
+        <img src="logo.png" alt="Our Company Logo" width="100" />
+        <h2>Check out our new product!</h2>
+        <img
+          class="product-image"
+          src="iphone_case_demo.jpg"
+          alt="Stylish new iPhone case"
+        />
+        <p class="price">A durable and stylish case for the latest iPhone!</p>
+        <!-- Price display and quantity selector -->
+        <p class="price">
+          Total: <strong id="price-display">90.00 HKD</strong>
+        </p>
+        <div class="quantity-selector">
+          <button id="quantity-minus" aria-label="Decrease quantity">-</button>
+          <input type="text" id="quantity-value" value="1" readonly />
+          <button id="quantity-plus" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+
+      <!-- Card for the Payment Form -->
+      <div class="card payment-form-card">
+        <h2>Payment Details</h2>
+        <form>
+          <div id="address-container" class="padding-top: 1rem"></div>
+          <div id="authentication-container" class="padding-top: 1rem"></div>
+          <br />
+          <div id="flow-container"></div>
+
+          <span id="error-message"></span>
+          <span id="successful-payment-message"></span>
+        </form>
+      </div>
+    </div>
+
+      <!-- Card for the Refund Form -->
+      <div class="card refund-card">
+        <h2>Refund</h2>
+        <p>After a successful payment, the Payment ID will appear below.</p>
+        <div class="payment-id-display">
+            <strong>Payment ID:</strong> <span id="successful-payment-id">None</span>
+        </div>
+        <div class="form-field">
+            <label for="refund-payment-id">Payment ID to Refund</label>
+            <input type="text" id="refund-payment-id" placeholder="Enter Payment ID">
+        </div>
+        <div class="form-field">
+            <label for="refund-amount" id="refund-currency-label">Amount to Refund (HKD)</label>
+            <input type="number" id="refund-amount" placeholder="e.g., 90.00" step="0.01">
+        </div>
+        <button id="refund-button" class="pay-button">Process Refund</button>
+        <!-- Element to display refund error messages -->
+        <div id="refund-error-message" class="error-message"></div>
+        <!-- Element to display refund success messages -->
+        <div id="refund-success-message" class="success-message"></div>
+      </div>
+    </div>
+
+    <!-- Toast notifications are moved outside the main layout for proper positioning -->
+    <div id="successToast" class="toast success">
+      <span>The payment was successful</span>
+    </div>
+    <div id="failedToast" class="toast failed">
+      <span>The payment failed, try again</span>
+    </div>
+
+    <script src="https://checkout-web-components.checkout.com/index.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
