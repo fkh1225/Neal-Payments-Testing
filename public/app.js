@@ -255,6 +255,7 @@ function clearRefundMessages() {
 // --- Event Listeners ---
 quantityPlus.addEventListener("click", () => {
   currentQuantity++;
+  quantityValue.value = currentQuantity; // Update the displayed quantity
   quantityMinus.disabled = false;
   updatePrice();
 });
@@ -262,6 +263,7 @@ quantityPlus.addEventListener("click", () => {
 quantityMinus.addEventListener("click", () => {
   if (currentQuantity > 1) {
     currentQuantity--;
+    quantityValue.value = currentQuantity; // Update the displayed quantity
     quantityMinus.disabled = currentQuantity === 1;
     updatePrice();
   }
