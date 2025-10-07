@@ -27,15 +27,35 @@
           src="iphone_case_demo.jpg"
           alt="Stylish new iPhone case"
         />
-        <p class="price">A durable and stylish case for the latest iPhone!</p>
+        <p class="price-description">A durable and stylish case for the latest iPhone!</p>
+        
         <!-- Price display and quantity selector -->
-        <p class="price">
-          Total: <strong id="price-display">90.00 HKD</strong>
-        </p>
+        <div class="price-details">
+            <p>Subtotal: <span id="subtotal-display">90.00 HKD</span></p>
+            <p class="discount-display" id="discount-display-container" style="display: none;">
+                Discount: <span class="discount-amount" id="discount-amount-display"></span>
+            </p>
+            <p class="total-price">
+                Total: <strong id="price-display">90.00 HKD</strong>
+            </p>
+        </div>
+
         <div class="quantity-selector">
           <button id="quantity-minus" aria-label="Decrease quantity">-</button>
           <input type="text" id="quantity-value" value="1" readonly />
           <button id="quantity-plus" aria-label="Increase quantity">+</button>
+        </div>
+
+        <!-- Discount Code Section -->
+        <div class="discount-section">
+            <div class="form-field">
+                <label for="discount-code">Discount Code</label>
+                <div class="discount-input-group">
+                    <input type="text" id="discount-code" placeholder="e.g., SALE10">
+                    <button id="apply-discount-btn" class="apply-button">Apply</button>
+                </div>
+            </div>
+            <div id="discount-message" class="message"></div>
         </div>
       </div>
 

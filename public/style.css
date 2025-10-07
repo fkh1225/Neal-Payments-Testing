@@ -257,7 +257,6 @@ body {
   max-width: 1024px;
 }
 
-/* Responsive layout for wider screens */
 @media (min-width: 768px) {
   .main-container {
     grid-template-columns: 1fr 1fr;
@@ -286,10 +285,31 @@ body {
   font-size: 1.5rem;
 }
 
-.product-card .price {
+.product-card .price-description {
+  font-size: 1rem;
+  color: #555;
+}
+
+.price-details {
+  width: 100%;
+  text-align: right;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+  margin: 1rem 0;
+}
+
+.price-details p {
+  margin: 0.5rem 0;
+}
+
+.price-details .total-price {
   font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.price-details .discount-amount {
+  color: var(--success-color);
 }
 
 .product-card .product-image {
@@ -303,7 +323,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem 0;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   overflow: hidden;
@@ -338,10 +357,54 @@ body {
   -moz-appearance: textfield;
 }
 
-.quantity-selector input::-webkit-outer-spin-button,
-.quantity-selector input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+/* --- Discount Section --- */
+.discount-section {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.discount-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.discount-input-group input {
+  flex-grow: 1;
+}
+
+.apply-button {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.apply-button:hover {
+  background-color: #4b5563;
+}
+
+.apply-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.message {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  min-height: 1.2em;
+}
+
+.message.success {
+  color: var(--success-color);
+}
+
+.message.error {
+  color: var(--error-color);
 }
 
 /* --- Payment Form Styling --- */
@@ -380,7 +443,7 @@ body {
 
 /* --- Refund Card Specifics --- */
 .refund-card {
-  grid-column: 1 / -1; /* Make refund card span full width on desktop */
+  grid-column: 1 / -1;
 }
 
 .refund-card h2 {
@@ -409,6 +472,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.25rem;
+  text-align: left;
 }
 
 .form-field label {
@@ -448,8 +512,8 @@ body {
 .error-message {
   color: var(--error-color);
   text-align: center;
-  padding: 1rem 0 0 0; /* Adjusted padding for better spacing */
-  min-height: 1.2em; /* Prevents layout shift when text appears */
+  padding: 1rem 0 0 0;
+  min-height: 1.2em;
   font-weight: 500;
 }
 
@@ -459,7 +523,7 @@ body {
   padding: 1rem 0 0 0;
   min-height: 1.2em;
   font-weight: 500;
-  word-break: break-all; /* Ensures long IDs don't overflow */
+  word-break: break-all;
 }
 
 @keyframes spin {
@@ -469,30 +533,4 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
-
-details {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1rem;
-}
-
-summary {
-  font-weight: 500;
-  cursor: pointer;
-  list-style: none; /* Remove default marker */
-  position: relative;
-  padding-right: 20px;
-}
-
-summary::after {
-  content: "▼";
-  position: absolute;
-  right: 0;
-  transition: transform 0.2s;
-}
-
-details[open] summary::after {
-  transform: rotate(-180deg);
 }
