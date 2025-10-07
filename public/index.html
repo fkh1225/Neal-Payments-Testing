@@ -14,8 +14,7 @@
 
   <body>
     <!-- 
-      Using a main container to create a responsive, centered layout.
-      It will stack on mobile and sit side-by-side on desktop.
+      Main container for the two-column layout on desktop.
     -->
     <div class="main-container">
       <!-- Card for Product Details -->
@@ -27,17 +26,24 @@
           src="iphone_case_demo.jpg"
           alt="Stylish new iPhone case"
         />
-        <p class="price-description">A durable and stylish case for the latest iPhone!</p>
-        
+        <p class="price-description">
+          A durable and stylish case for the latest iPhone!
+        </p>
+
         <!-- Price display and quantity selector -->
         <div class="price-details">
-            <p>Subtotal: <span id="subtotal-display">90.00 HKD</span></p>
-            <p class="discount-display" id="discount-display-container" style="display: none;">
-                Discount: <span class="discount-amount" id="discount-amount-display"></span>
-            </p>
-            <p class="total-price">
-                Total: <strong id="price-display">90.00 HKD</strong>
-            </p>
+          <p>Subtotal: <span id="subtotal-display">90.00 HKD</span></p>
+          <p
+            class="discount-display"
+            id="discount-display-container"
+            style="display: none"
+          >
+            Discount:
+            <span class="discount-amount" id="discount-amount-display"></span>
+          </p>
+          <p class="total-price">
+            Total: <strong id="price-display">90.00 HKD</strong>
+          </p>
         </div>
 
         <div class="quantity-selector">
@@ -48,14 +54,20 @@
 
         <!-- Discount Code Section -->
         <div class="discount-section">
-            <div class="form-field">
-                <label for="discount-code">Discount Code</label>
-                <div class="discount-input-group">
-                    <input type="text" id="discount-code" placeholder="e.g., SALE10">
-                    <button id="apply-discount-btn" class="apply-button">Apply</button>
-                </div>
+          <div class="form-field">
+            <label for="discount-code">Discount Code</label>
+            <div class="discount-input-group">
+              <input
+                type="text"
+                id="discount-code"
+                placeholder="e.g., SALE10"
+              />
+              <button id="apply-discount-btn" class="apply-button">
+                Apply
+              </button>
             </div>
-            <div id="discount-message" class="message"></div>
+          </div>
+          <div id="discount-message" class="message"></div>
         </div>
       </div>
 
@@ -74,27 +86,38 @@
       </div>
     </div>
 
-      <!-- Card for the Refund Form -->
-      <div class="card refund-card">
-        <h2>Refund</h2>
-        <p>After a successful payment, the Payment ID will appear below.</p>
-        <div class="payment-id-display">
-            <strong>Payment ID:</strong> <span id="successful-payment-id">None</span>
-        </div>
-        <div class="form-field">
-            <label for="refund-payment-id">Payment ID to Refund</label>
-            <input type="text" id="refund-payment-id" placeholder="Enter Payment ID">
-        </div>
-        <div class="form-field">
-            <label for="refund-amount" id="refund-currency-label">Amount to Refund (HKD)</label>
-            <input type="number" id="refund-amount" placeholder="e.g., 90.00" step="0.01">
-        </div>
-        <button id="refund-button" class="pay-button">Process Refund</button>
-        <!-- Element to display refund error messages -->
-        <div id="refund-error-message" class="error-message"></div>
-        <!-- Element to display refund success messages -->
-        <div id="refund-success-message" class="success-message"></div>
+    <!-- Card for the Refund Form -->
+    <div class="card refund-card">
+      <h2>Refund</h2>
+      <p>After a successful payment, the Payment ID will appear below.</p>
+      <div class="payment-id-display">
+        <strong>Payment ID:</strong>
+        <span id="successful-payment-id">None</span>
       </div>
+      <div class="form-field">
+        <label for="refund-payment-id">Payment ID to Refund</label>
+        <input
+          type="text"
+          id="refund-payment-id"
+          placeholder="Enter Payment ID"
+        />
+      </div>
+      <div class="form-field">
+        <label for="refund-amount" id="refund-currency-label"
+          >Amount to Refund (HKD)</label
+        >
+        <input
+          type="number"
+          id="refund-amount"
+          placeholder="e.g., 90.00"
+          step="0.01"
+        />
+      </div>
+      <button id="refund-button" class="pay-button">Process Refund</button>
+      <!-- Element to display refund error messages -->
+      <div id="refund-error-message" class="error-message"></div>
+      <!-- Element to display refund success messages -->
+      <div id="refund-success-message" class="success-message"></div>
     </div>
 
     <!-- Toast notifications are moved outside the main layout for proper positioning -->

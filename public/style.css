@@ -237,8 +237,8 @@ body {
   margin: 0;
   padding: 1.5rem;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
 }
 
@@ -443,7 +443,9 @@ body {
 
 /* --- Refund Card Specifics --- */
 .refund-card {
-  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 1024px;
+  margin-top: 3rem;
 }
 
 .refund-card h2 {
