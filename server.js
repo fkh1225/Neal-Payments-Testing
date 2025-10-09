@@ -12,7 +12,9 @@ const rawBodySaver = (req, res, buf, encoding) => {
 };
 
 app.use(express.json({ verify: rawBodySaver }));
+// urlencoded: A middleware to accept form data and pass the data from client-side as objects and to be used at server-side
 app.use(express.urlencoded({ extended: true, verify: rawBodySaver }));
+// expose the files in the "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 80;
@@ -69,7 +71,7 @@ app.post("/create-payment-sessions", async (req, res) => {
 
   const paymentData = {
     amount: totalAmount,
-    currency: currency || "HKD",
+    currency: currency,
     reference: `ORD-${Date.now()}`,
     "3ds": { enabled: true },
     billing: { address: { country: "HK" } },
@@ -80,6 +82,14 @@ app.post("/create-payment-sessions", async (req, res) => {
     processing_channel_id: PCID_HK,
     success_url: "https://example.com/payments/success",
     failure_url: "https://example.com/payments/failure",
+    items: [
+      {
+        reference: `ORD-${Date.now()}`,
+        name: "iPhone Case Designed by Neal",
+        quantity: quantity,
+        unit_price: PRODUCT_CONFIG.UNIT_PRICE,
+      },
+    ],
   };
 
   try {
@@ -125,8 +135,6 @@ The codes below does not work for session_data, b/c there is a duplicate session
     return res.status(400).json({ error: "Session data and ID are required." });
   }
 
-  ////////////neal
-
   // --- Server-side Price Calculation using the single source of truth ---
   let finalAmount = PRODUCT_CONFIG.UNIT_PRICE * quantity;
 
@@ -137,12 +145,22 @@ The codes below does not work for session_data, b/c there is a duplicate session
       finalAmount -= discountValue;
     }
   }
-  /////////////neal
 
   const payload = {
     amount: Math.round(finalAmount), // Use the dynamically calculated amount
     session_data: session_data,
-    "3ds": { enabled: false },
+    "3ds": { enabled: true },
+    billing: {
+      address: { country: "HK" },
+    },
+    items: [
+      {
+        reference: `ORD-${Date.now()}`,
+        name: "iPhone Case Designed by Neal",
+        quantity: quantity,
+        unit_price: PRODUCT_CONFIG.UNIT_PRICE,
+      },
+    ],
   };
 
   console.log(`Submitting payment for session ${payment_session_id}...`);
