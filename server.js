@@ -73,11 +73,15 @@ app.post("/create-payment-sessions", async (req, res) => {
     amount: totalAmount,
     currency: currency,
     reference: `ORD-${Date.now()}`,
-    "3ds": { enabled: true },
+    "3ds": { enabled: false },
     billing: { address: { country: "HK" } },
     customer: {
       name: "Neal Fung",
-      email: "neal@dummy.com",
+      email: "fkh1225@hotmail.com",
+      phone: {
+        country_code: "+852",
+        number: "95240430",
+      },
     },
     processing_channel_id: PCID_HK,
     success_url: "https://example.com/payments/success",
@@ -136,20 +140,19 @@ The codes below does not work for session_data, b/c there is a duplicate session
   }
 
   // --- Server-side Price Calculation using the single source of truth ---
-  let finalAmount = PRODUCT_CONFIG.UNIT_PRICE * quantity;
 
   if (discountCode) {
     const discount = DISCOUNTS[discountCode.toUpperCase()];
     if (discount) {
-      const discountValue = finalAmount * discount.percentage;
-      finalAmount -= discountValue;
+      PRODUCT_CONFIG.UNIT_PRICE -=
+        PRODUCT_CONFIG.UNIT_PRICE * discount.percentage;
     }
   }
 
   const payload = {
-    amount: Math.round(finalAmount), // Use the dynamically calculated amount
+    amount: quantity * PRODUCT_CONFIG.UNIT_PRICE, // Use the dynamically calculated amount
     session_data: session_data,
-    "3ds": { enabled: true },
+    "3ds": { enabled: false },
     billing: {
       address: { country: "HK" },
     },

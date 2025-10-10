@@ -161,32 +161,35 @@ async function initializePaymentSession() {
 
     flowContainer.innerHTML = "";
 
-    checkout = await CheckoutWebComponents({
-      publicKey: PUBLIC_KEY,
-      environment: "sandbox",
-      locale: "en-GB",
-      paymentSession,
-      appearance: {
+    const appearance = {
         colorAction: "#323416",
         colorFormBorder: "#8C9E6E",
         colorPrimary: "#323416",
       },
-      onPaymentCompleted: (_component, paymentResponse) => {
-        successfulPaymentId.textContent = paymentResponse.id;
-        refundPaymentIdInput.value = paymentResponse.id;
-      },
-    });
+      checkout = await CheckoutWebComponents({
+        publicKey: PUBLIC_KEY,
+        environment: "sandbox",
+        locale: "en-GB",
+        paymentSession,
+        appearance,
+        onPaymentCompleted: (_component, paymentResponse) => {
+          successfulPaymentId.textContent = paymentResponse.id;
+          refundPaymentIdInput.value = paymentResponse.id;
+        },
+      });
 
     const flowComponent = checkout.create("flow", { handleSubmit });
     flowComponent.mount(flowContainer);
+    /*------------ Mount address component------------------ */
+    // const addressComponent = checkout.create("shipping_address");
+    // if (await addressComponent.isAvailable()) {
+    //   addressComponent.mount(addressContainer);
+    // }
+    /*------------ Mount authentication component------------------ */
+    // const authenticationComponent = checkout.create("authentication");
+    // authenticationComponent.mount(authContainer);
 
-    const addressComponent = checkout.create("shipping_address");
-    if (await addressComponent.isAvailable()) {
-      addressComponent.mount(addressContainer);
-    }
-
-    const authenticationComponent = checkout.create("authentication");
-    authenticationComponent.mount(authContainer);
+    /*------------ Remember Me config via Retool------------------ */
 
     // After initialization, update the price to match the current state (quantity, discount)
     await updatePrice();
