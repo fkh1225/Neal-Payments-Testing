@@ -14,7 +14,7 @@ const rawBodySaver = (req, res, buf, encoding) => {
 app.use(express.json({ verify: rawBodySaver }));
 // urlencoded: A middleware to accept form data and pass the data from client-side as objects and to be used at server-side
 app.use(express.urlencoded({ extended: true, verify: rawBodySaver }));
-// expose the files in the "public" folder
+// expose the files in the "public" folder, "__dirname" is the absolute path of the current directory
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 80;
